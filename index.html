@@ -69,10 +69,9 @@
             overflow: hidden;
         }
 
-        /* FIXED: Logo Container matching the new screenshot proportions */
         .logo-container {
             width: 100%;
-            padding: 40px 40px 10px 40px; /* Generous side padding, brings it closer to text */
+            padding: 40px 40px 10px 40px;
             background-color: #ffffff;
             display: flex;
             align-items: center;
@@ -81,7 +80,7 @@
 
         .logo-container img {
             width: 100%;
-            max-width: 260px; /* Sets a bold, visible width like the screenshot */
+            max-width: 260px;
             height: auto;
             object-fit: contain;
         }
@@ -272,7 +271,7 @@
                 </ul>
             </div>
 
-            <a href="https://giftclick.org/aff_c?offer_id=2596&aff_id=17763&source=tk1" class="claim-button">
+            <a href="https://giftclick.org/aff_c?offer_id=2596&aff_id=17763" class="claim-button">
                 <span class="claim-text">CLAIM YOUR GIFT CARD</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
@@ -300,10 +299,34 @@
             }, 1000);
         }
 
+        // Handles passing the 'source' parameter along to the affiliate link
+        function forwardSourceParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sourceValue = urlParams.get('source');
+
+            if (sourceValue) {
+                const claimButton = document.querySelector('.claim-button');
+                if (claimButton) {
+                    try {
+                        const targetUrl = new URL(claimButton.href);
+                        // Safely appends '&source=[value]' without disrupting existing params
+                        targetUrl.searchParams.set('source', sourceValue);
+                        claimButton.href = targetUrl.toString();
+                    } catch (e) {
+                        console.error("Error setting affiliate parameter: ", e);
+                    }
+                }
+            }
+        }
+
         window.onload = function () {
+            // Start the countdown
             let fifteenMinutes = 60 * 15,
                 display = document.querySelector('#countdown');
             startTimer(fifteenMinutes, display);
+
+            // Forward the source parameter
+            forwardSourceParameter();
         };
     </script>
 </body>
