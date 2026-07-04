@@ -69,27 +69,26 @@
             overflow: hidden;
         }
 
-        /* Reduced Logo Container Size */
+        /* FIXED: Logo Container matching the new screenshot proportions */
         .logo-container {
             width: 100%;
-            height: 80px; /* Reduced from 160px */
+            padding: 40px 40px 10px 40px; /* Generous side padding, brings it closer to text */
             background-color: #ffffff;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 20px; /* Adds breathing room at the top */
         }
 
         .logo-container img {
-            height: 100%;
-            width: auto;
+            width: 100%;
+            max-width: 260px; /* Sets a bold, visible width like the screenshot */
+            height: auto;
             object-fit: contain;
         }
 
         /* Card Content Area */
         .card-content {
-            padding: 8px 28px 28px 28px;
+            padding: 0 28px 28px 28px;
             text-align: center;
         }
 
@@ -99,7 +98,7 @@
             color: #000000;
             line-height: 1;
             letter-spacing: -0.05em;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .sub-heading {
@@ -121,7 +120,7 @@
             justify-content: center;
             gap: 8px;
             color: #dc2626;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .timer-banner svg {
